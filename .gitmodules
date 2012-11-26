@@ -1,0 +1,3 @@
+[submodule "vendor/cssminify"]
+	path = vendor/cssminify
+	url = https://github.com/matthiassiegel/cssminify.git
