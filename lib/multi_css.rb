@@ -96,6 +96,8 @@ module MultiCss
 
     # Minify CSS
     def min(string, options={})
+      string = string.read if string.respond_to?(:read)
+
       adapter = current_adapter(options)
       if defined?(adapter::ParseError)
         begin
@@ -106,6 +108,11 @@ module MultiCss
       else
         adapter.min(string, options)
       end
+    end
+
+    # Minify partial CSS (as in style attribute)
+    def min_attr(string, options={})
+      min("a{#{string}}", options).gsub(/^a\{|\}$/, '')
     end
   end
 

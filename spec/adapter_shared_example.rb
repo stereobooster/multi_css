@@ -10,7 +10,8 @@ shared_examples_for "an adapter" do |adapter|
 
   describe '.min' do
     it 'minify' do
-      MultiCss.min('a { color: red; }').should eq 'a{color:red}'
+      MultiCss.min("a { color: red;\n background: red ;  } ").should eq 'a{color:red;background:red}'
+      MultiCss.min_attr(" color: red;\n background: red ; ").should eq 'color:red;background:red'
     end
 
     if adapter == 'css_press'

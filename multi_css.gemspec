@@ -14,12 +14,13 @@ Gem::Specification.new do |gem|
   gem.license       = "MIT"
 
   gem.files         = `git ls-files`.split($/)
+  gem.files         = `cd vendor/cssminify && git ls-files`.split($/).map{|f| 'vendor/cssminify/' + f}
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_development_dependency 'rake', '~> 0.9'
-  gem.add_development_dependency 'rdoc', '~> 3.9'
-  gem.add_development_dependency 'rspec', '~> 2.6'
-  gem.add_development_dependency 'simplecov', '~> 0.4'
+  gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'rdoc'
+  gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'simplecov'
 end
