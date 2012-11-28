@@ -38,18 +38,13 @@ describe 'MultiCss' do
       end
 
       it 'defaults to vendored implemention if no other implementions are available' do
-        MultiCss.default_adapter.should eq :vendored
-      end
-
-      it 'prints a warning' do
-        Kernel.should_receive(:warn).with(/warning/i)
-        MultiCss.default_adapter
+        MultiCss.default_adapter.should eq :css_press
       end
     end
 
-    it 'defaults to the best available gem' do
-      require 'css_press'
-      MultiCss.adapter.name.should eq 'MultiCss::Adapters::CssPress'
+    it 'defaults to the best not vendored lib if any other lib available' do
+      require 'cssminify'
+      MultiCss.adapter.name.should eq 'MultiCss::Adapters::Cssminify'
     end
 
     it 'is settable via a symbol' do
@@ -63,7 +58,7 @@ describe 'MultiCss' do
     end
   end
 
-  %w(css_press cssminify yuicssmin rainpress vendored).each do |adapter|
+  %w(css_press cssminify yuicssmin rainpress).each do |adapter|
     context adapter do
       it_behaves_like "an adapter", adapter
     end

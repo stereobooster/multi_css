@@ -11,11 +11,11 @@ module MultiCss
   @adapter = nil
   
   REQUIREMENT_MAP = [
-    ["css_press", :css_press],
     ["cssminify", :cssminify],
     ["yuicssmin", :yuicssmin],
     ["yui/compressor", :yui_compressor],
-    ["rainpress", :rainpress]
+    ["rainpress", :rainpress],
+    ["css_press", :css_press]
   ]
 
   class << self
@@ -25,11 +25,11 @@ module MultiCss
     # if any adapters are already loaded, then checks
     # to see which are installed if none are loaded.
     def default_adapter
-      return :css_press if defined?(::CssPress)
       return :cssminify if defined?(::CSSminify)      
       return :yuicssmin if defined?(::Yuicssmin)
       return :yui_compressor if defined?(::YUI::CssCompressor)
       return :rainpress if defined?(::Rainpress)
+      return :css_press if defined?(::CssPress)
 
       REQUIREMENT_MAP.each do |(library, adapter)|
         begin
@@ -40,8 +40,7 @@ module MultiCss
         end
       end
 
-      Kernel.warn "[WARNING] MultiCss is using the default adapter."
-      :vendored
+      :css_press
     end
     # :nodoc:
     alias :default_engine :default_adapter

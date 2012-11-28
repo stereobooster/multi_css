@@ -19,13 +19,12 @@ supported engines already loaded, it will utilize them before attempting to
 load any. 
 It will load libraries in following order:
 
- - [css_press](https://github.com/stereobooster/css_press)
  - [cssminify](https://github.com/matthiassiegel/cssminify)
  - [yuicssmin](https://github.com/matthiassiegel/yuicssmin)
  - [ruby-yui-compressor](https://github.com/sstephenson/ruby-yui-compressor). Doesn't test with travis-ci
  - [rainpress](https://github.com/sprsquish/rainpress)
 
-If no other library is available, MultiCss falls back to vendored [cssminify](https://github.com/matthiassiegel/cssminify), a simple and reliable library.
+If no other library is available, MultiCss falls back to [css_press](https://github.com/stereobooster/css_press).
 
 ## TODO
 
